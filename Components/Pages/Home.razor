@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@* Date of Birth Variable *@
+<MudDatePicker Label="Date of Birth"
+			   Editable="true"
+			   Required=@true
+			   RequiredError="Date of Birth Required"
+			   Placeholder="YYYY/MM/DD"
+			   @bind-Date=@dtmDOB
+			   ShowToolbar=@false
+			   Mask="@(new DateMask("yyyy/MM/dd"))" DateFormat="yyyy/MM/dd"
+			   Variant=@Variant.Outlined
+			   MinDate=@dtmMinDate />
+
+@* Date of Birth for Person Object *@
+<MudDatePicker Label="Person's Date of Birth"
+			   Editable="true"
+			   Required=@true
+			   RequiredError="Date of Birth Required"
+			   Placeholder="YYYY/MM/DD"
+			   @bind-Date=@person.dtmDOB
+			   ShowToolbar=@false
+			   Mask="@(new DateMask("yyyy/MM/dd"))" DateFormat="yyyy/MM/dd"
+			   Variant=@Variant.Outlined
+			   MinDate=@dtmMinDate />
+
+@code {
+	
+	DateTime? dtmDOB;
+	DateTime? dtmMinDate = DateTime.Now.AddYears(-125);
+
+	// Person Object
+	Person person = new();
+
+	// Person Class Definition
+	public class Person
+	{
+		public DateTime? dtmDOB { get; set; }
+	}
+}
